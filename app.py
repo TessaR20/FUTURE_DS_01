@@ -50,7 +50,8 @@ CUSTOM_CSS = """
 [data-testid="stMetricLabel"] { font-size: 0.8rem; color: #595959; }
 [data-testid="stMetricValue"] { font-size: 1.55rem; color: #1F3864; }
 h1, h2, h3 { color: #1F3864; }
-.stTabs [data-baseweb="tab"] { font-size: 0.95rem; }
+.stTabs [data-baseweb="tab-list"] { display: flex; justify-content: space-evenly; gap: 0.35rem; }
+.stTabs [data-baseweb="tab"] { font-size: 0.95rem; flex: 1 1 0; justify-content: center; text-align: center; }
 </style>
 """
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
@@ -73,7 +74,7 @@ DEFAULT_PATH = os.path.join(os.path.dirname(__file__), "sales_data.csv")
 if os.path.exists(DEFAULT_PATH):
     df_raw = load_data(DEFAULT_PATH)
 else:
-    st.title("📊 Sales Performance Dashboard")
+    st.title("Sales Performance Dashboard")
     st.info("No `sales_data.csv` found next to this script. Upload a CSV with the expected columns to continue.")
     uploaded = st.file_uploader("Upload sales data (CSV)", type=["csv"])
     if uploaded is None:
@@ -83,7 +84,7 @@ else:
 # ----------------------------------------------------------------------------
 # Sidebar filters
 # ----------------------------------------------------------------------------
-st.sidebar.title("📊 Sales Dashboard")
+st.sidebar.title("Sales Dashboard")
 st.sidebar.caption("Filter the data below — all charts and KPIs update live.")
 
 min_date, max_date = df_raw["Order Date"].min().date(), df_raw["Order Date"].max().date()
@@ -131,7 +132,7 @@ if df.empty:
 # ----------------------------------------------------------------------------
 # Header + KPIs
 # ----------------------------------------------------------------------------
-st.title("📊 Sales Performance Dashboard")
+st.title("Sales Performance Dashboard")
 st.caption(f"Showing {len(df):,} order line items from {start_date} to {end_date}")
 
 total_sales = df["Net Sales"].sum()
@@ -164,7 +165,7 @@ st.markdown("---")
 # Tabs
 # ----------------------------------------------------------------------------
 tab_trend, tab_products, tab_category, tab_region, tab_channel, tab_data = st.tabs(
-    ["📈 Trend", "🏆 Top Products", "🗂️ Category", "🌍 Region", "🛒 Channel", "🔎 Raw Data"]
+    ["Trend", "Top Products", "Category", "Region", "Channel", "Raw Data"]
 )
 
 # ---- Trend tab ----
@@ -172,7 +173,7 @@ with tab_trend:
     c1, c2 = st.columns([2, 1])
     with c1:
         gran = st.radio("Granularity", ["Monthly", "Weekly", "Daily"], horizontal=True)
-        freq_map = {"Monthly": "M", "Weekly": "W", "Daily": "D"}
+        freq_map = {"Monthly": "ME", "Weekly": "W", "Daily": "D"}
         trend = (
             df.set_index("Order Date")
             .resample(freq_map[gran])["Net Sales"]
@@ -301,4 +302,4 @@ with tab_data:
     st.markdown(f"**{len(df):,} rows** match the current filters.")
     st.dataframe(df.drop(columns=["Month", "Year", "Weekday"]), use_container_width=True, height=450)
     csv = df.to_csv(index=False).encode("utf-8")
-    st.download_button("⬇️ Download filtered data as CSV", csv, "filtered_sales_data.csv", "text/csv")
+    st.download_button("Download filtered data as CSV", csv, "filtered_sales_data.csv", "text/csv")
