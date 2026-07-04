@@ -5,7 +5,7 @@ a 2-year (Jan 2024–Dec 2025) transaction history for a multi-category retail/e
 business, then analyzes trends, top products, category/region/channel performance, and
 delivers a formal report with insights and recommendations.
 
-## 📁 Contents
+## Contents
 
 | File | Description |
 |---|---|
@@ -15,7 +15,7 @@ delivers a formal report with insights and recommendations.
 | `dashboard/app.py` | Interactive Python (Streamlit + Plotly) dashboard — filter by date, category, region, channel, segment; live KPIs, trend/product/category/region/channel views, raw-data export |
 | `dashboard/requirements.txt` | Python dependencies for the dashboard |
 
-## 📊 Key Findings
+## Key Findings
 
 - **Total Net Sales (2024–2025):** $1,518,360 | **Total Profit:** $499,230 (32.9% margin)
 - **YoY Growth:** Revenue grew **17.0%** from 2024 to 2025
@@ -24,7 +24,7 @@ delivers a formal report with insights and recommendations.
 - **Top channel:** Online (~55% of total revenue) — more than double Retail Store and Marketplace combined
 - **Regional footprint:** Well diversified — no region varies more than ~6% from the average
 
-## 🎯 Top Recommendations
+## Top Recommendations
 
 1. Shift marketing/inventory investment toward Q4 to capture the proven seasonal peak
 2. Expand the Apparel line — it converts revenue to profit most efficiently
@@ -33,7 +33,7 @@ delivers a formal report with insights and recommendations.
 5. Use the Jan–Feb lull for clearance campaigns and supplier renegotiation
 6. Audit the Marketplace channel to decide whether to scale or deprioritize it
 
-## 🚀 Running the Dashboard
+## Running the Dashboard
 
 ```bash
 cd dashboard
@@ -46,7 +46,7 @@ browser at `http://localhost:8501` with sidebar filters (date range, category, r
 channel, customer segment) and six tabs: Trend, Top Products, Category, Region, Channel,
 and Raw Data (with CSV export of the filtered view).
 
-## 🛠️ Methodology & Tools
+## Methodology & Tools
 
 - **Data generation:** Python (pandas, numpy) — simulated realistic seasonality, weekday
   effects, discounting behavior, and year-over-year growth across 5 categories, 4 regions,
@@ -58,7 +58,7 @@ To reproduce or adapt this analysis for a real dataset, replace `sales_data.csv`
 client's transaction export (mapped to the same column structure) and re-run the analysis
 scripts — no other changes required.
 
-## 📌 About This Project
+## About This Project
 
 Built as a self-directed "act like a real analyst" exercise: rather than relying only on a
 downloaded Kaggle dataset, this project simulates a plausible small-to-mid-size retail
